@@ -11,7 +11,7 @@ phases:
     commands:
       - docker build -t glue-image . 
       - docker run -itd --name glue-container glue-image
-      - docker ps
+      #- docker exec -i -t glue-container /bin/bash
     #   - pwd
     #   - mkdir -p /opt/spark
     #   - cd /opt/spark
@@ -55,10 +55,10 @@ phases:
       - cd ~
       - ls -al
       - pwd
-      - git clone https://github.com/AmanPatwa/glue-test.git
+      - git clone https://github.com/Tarini-27/glue-job-test
       - ls
       # - NAME=$(git diff --name-only HEAD^)
-      - cd glue-test
+      - cd glue-job-test
       - ls
       - 
       # - ./aws-glue-libs/bin/gluesparksubmit glue-test/sunlife-aman-glue-test.py
