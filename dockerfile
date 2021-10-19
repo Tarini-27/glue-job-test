@@ -19,6 +19,7 @@ RUN export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 RUN export PYSPARK_PYTHON=$(which python)
 RUN pip3 install pyspark
 RUN pip3 install py4j
-#COPY . /home
-
+COPY . /home
+WORKDIR "/home/glue-test"
+ENTRYPOINT ["/home/aws-glue-libs/bin/gluepytest", "test.py"]
 
