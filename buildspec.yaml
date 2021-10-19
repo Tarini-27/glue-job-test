@@ -1,0 +1,80 @@
+version: 0.2
+env:
+  git-credential-helper: yes
+exported-variables:
+  - CODEBUILD_RESOLVED_SOURCE_VERSION
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+      java: corretto8
+    commands:
+      - docker build -t glue-image . 
+      - docker run -itd --name glue-container glue-image
+    #   - pwd
+    #   - mkdir -p /opt/spark
+    #   - cd /opt/spark
+    #   - pwd
+    #   - wget https://archive.apache.org/dist/spark/spark-2.4.7/spark-2.4.7-bin-hadoop2.7.tgz
+    #   # - wget https://dlcdn.apache.org/spark/spark-3.0.3/spark-3.0.3-bin-hadoop2.7.tgz
+    #   - tar xvf spark-2.4.7-bin-hadoop2.7.tgz
+    #   - ls -al
+    #   - which python
+    #   - which java
+    #   - java -version
+    #   # - export JAVA_HOME=$(which java)
+    #   - cd ~
+    #   # - wget https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-common/apache-maven-3.6.0-bin.tar.gz
+    #   # - tar xvf apache-maven-3.6.0-bin.tar.gz
+    #   - echo $JAVA_HOME
+    #   - export SPARK_HOME=/opt/spark/spark-2.4.7-bin-hadoop2.7 
+    #   # - export MAVEN=/root/apache-maven-3.6.0-bin
+    #   # - export PATH=$PATH:$MAVEN/bin
+    #   - export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+    #   - export PATH=$PATH:$SPARK_HOME
+    #   - export PYSPARK_PYTHON=$(which python)
+    #   - export PYSPARK_DRIVER_PYTHON=$(which python)
+    #   - export PATH=$PATH:$JAVA_HOME
+    #   - echo $SPARK_HOME
+    #   # - export JAVA_HOME=$(which java)
+    #   - pip install pytest
+    #   # - pip install pyspark
+    #   - pip install awsglue-local
+    #   # - pip install pyspark
+    #   # - pip install py4j
+    #   - pip install pyGLUE
+    #   - pip install pandas
+    
+  build:
+    commands:
+      # - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
+      # - git fetch
+      # - test=$(git diff --name-only $CODEBUILD_RESOLVED_SOURCE_VERSION^)
+      # - echo $test
+      - cd ~
+      - ls -al
+      - pwd
+      - git clone https://github.com/AmanPatwa/glue-test.git
+      - ls
+      # - NAME=$(git diff --name-only HEAD^)
+      - cd glue-test
+      - ls
+      - 
+      # - ./aws-glue-libs/bin/gluesparksubmit glue-test/sunlife-aman-glue-test.py
+      # - ../aws-glue-libs/bin/gluepytest test_spark.py
+      # - spark-submit sunlife-aman-glue-test.py
+      # - pytest
+      - name=$(git diff --name-only HEAD^)
+      - name=$(echo $name)
+      - echo $name
+      - name1=$name
+      - export name1
+  post_build:
+    commands:
+      # - python --version
+      # - pip install aws_logging_handlers
+      - python test.py
+artifacts:
+  type: zip
+  files:
+    - '**/*'
