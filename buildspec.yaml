@@ -60,7 +60,6 @@ phases:
       # - NAME=$(git diff --name-only HEAD^)
       - cd glue-job-test
       - ls
-      - 
       # - ./aws-glue-libs/bin/gluesparksubmit glue-test/sunlife-aman-glue-test.py
       # - ../aws-glue-libs/bin/gluepytest test_spark.py
       # - spark-submit sunlife-aman-glue-test.py
