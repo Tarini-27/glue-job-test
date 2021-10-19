@@ -11,7 +11,7 @@ phases:
     commands:
       - docker build -t glue-image . 
       - docker run -itd --name glue-container glue-image
-      - docker exec -T glue-container /bin/bash
+      - docker exec -i glue-container /bin/bash
     #   - pwd
     #   - mkdir -p /opt/spark
     #   - cd /opt/spark
