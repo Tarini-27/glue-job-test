@@ -21,5 +21,6 @@ RUN pip3 install pyspark
 RUN pip3 install py4j
 COPY . /home
 WORKDIR "/home/glue-test"
-ENTRYPOINT ["/home/aws-glue-libs/bin/gluepytest", "test.py"]
+RUN pwd
+ENTRYPOINT ["python", "test.py"]
 
