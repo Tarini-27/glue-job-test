@@ -2,7 +2,7 @@
 # COPY . /home/jupyter/glue-job
 # CMD ["/home/spark-2.4.3-bin-spark-2.4.3-bin-hadoop2.8/bin/spark-submit", "/home/jupyter/glue-job/job-test.py"]
 
-FROM alpine:3.14
+FROM ubuntu:20.04
 RUN apt-get update && apt -y install python-pip
 RUN pip install pytest
 RUn pip install pandas
