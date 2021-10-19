@@ -2,7 +2,7 @@
 # COPY . /home/jupyter/glue-job
 # CMD ["/home/spark-2.4.3-bin-spark-2.4.3-bin-hadoop2.8/bin/spark-submit", "/home/jupyter/glue-job/job-test.py"]
 
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 RUN apt-get update && apt -y install python-pip
 RUN pip install pytest
 RUn pip install pandas
@@ -17,7 +17,7 @@ RUN export PATH=$PATH:$MAVEN/bin
 RUN export SPARK_HOME=/root/spark-3.1.1-amzn-0-bin-3.2.1-amzn-3
 RUN export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 RUN export PYSPARK_PYTHON=$(which python)
-RUN pip install awsglue-local
+#RUN pip install awsglue-local
 COPY . /home
 
 
