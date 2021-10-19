@@ -15,6 +15,7 @@ from pyspark.sql import SQLContext
 # glueContext = GlueContext(SparkContext.getOrCreate())
 
 
+
 # datasource0 = glueContext.create_dynamic_frame.from_catalog(database = 'dbcrawler', table_name = 'sunlife-cyber-sec-testtestset_json')
 # datasource0.printSchema()
 ## @type: ApplyMapping
