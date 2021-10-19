@@ -22,5 +22,5 @@ RUN pip3 install py4j
 COPY . /home
 WORKDIR "/home/glue-test"
 RUN pwd
-ENTRYPOINT ["python", "test.py"]
+ENTRYPOINT ["python3", "test.py"]
 
