@@ -4,8 +4,8 @@
 
 FROM ubuntu:18.04
 RUN apt-get update && apt -y install python3-pip
-RUN pip install pytest
-RUn pip install pandas
+RUN pip3 install pytest
+RUn pip3 install pandas
 RUN apt -y install openjdk-8-jdk-headless
 RUN apt-get -y install git
 RUN git clone https://github.com/awslabs/aws-glue-libs.git
