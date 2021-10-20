@@ -2,9 +2,9 @@
 # COPY . /home/jupyter/glue-job
 # CMD ["/home/spark-2.4.3-bin-spark-2.4.3-bin-hadoop2.8/bin/spark-submit", "/home/jupyter/glue-job/job-test.py"]
 
-FROM python:3.10.0-buster
+FROM ubuntu:18.04
 WORKDIR /home
-RUN apt-get update 
+RUN apt-get update && apt -y install python-pip
 RUN pip install pytest
 RUN pip install pandas
 #RUN python --version
