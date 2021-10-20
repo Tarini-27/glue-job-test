@@ -27,7 +27,7 @@ RUN pip install awsglue-local
 #RUN pip install py4j
 RUN pip install boto3
 RUN git clone https://github.com/Tarini-27/glue-job-test
-WORKDIR /glue-job-test
+WORKDIR glue-job-test
 RUN pwd
 RUN find / -name "aws-glue-libs"
 RUN /home/aws-glue-libs/bin/gluepytest test_spark.py
