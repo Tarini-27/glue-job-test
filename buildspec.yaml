@@ -13,7 +13,7 @@ phases:
       - docker build -t glue-image . 
       - docker run -i glue-image bash
       #- docker ps
-      #- docker exec -i glue-container /bin/bash
+      - docker exec -i glue-container /bin/bash
     #   - pwd
     #   - mkdir -p /opt/spark
     #   - cd /opt/spark
