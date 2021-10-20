@@ -64,7 +64,7 @@ def handler():
             try:
                 print("Testing")
                 #res = subprocess.check_output(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
-                res = subprocess.Popen(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"], stdout=PIPE).communicate()[0]
+                res = subprocess.Popen(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"], stdout=subprocess.PIPE).communicate()[0]
                 print(res)
                 res = res.decode("utf-8") 
                 #print(res.returncode)
