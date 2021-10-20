@@ -9,11 +9,9 @@ phases:
       python: 3.7
       java: corretto8
     commands:
-      #- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
       - docker build -t glue-image . 
-      - docker run -itd --name glue-container glue-image
-      #- docker ps
-      #- docker exec -i glue-container /bin/bash
+      #- docker run -itd --name glue-container glue-image
+      #- docker exec -i -t glue-container /bin/bash
     #   - pwd
     #   - mkdir -p /opt/spark
     #   - cd /opt/spark
@@ -48,34 +46,34 @@ phases:
     #   - pip install pyGLUE
     #   - pip install pandas
     
-  #build:
-    #commands:
+  build:
+    commands:
       # - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       # - git fetch
       # - test=$(git diff --name-only $CODEBUILD_RESOLVED_SOURCE_VERSION^)
       # - echo $test
       #- cd ~
-      #- ls -al
-      #- pwd
-      #- git clone https://github.com/Tarini-27/glue-job-test
-      #- ls
+      - ls -al
+      - pwd
+      - git clone https://github.com/Tarini-27/glue-job-test
+      - ls
       # - NAME=$(git diff --name-only HEAD^)
-      #- cd glue-job-test
-      #- ls
+      - cd glue-job-test
+      - ls
       # - ./aws-glue-libs/bin/gluesparksubmit glue-test/sunlife-aman-glue-test.py
       # - ../aws-glue-libs/bin/gluepytest test_spark.py
       # - spark-submit sunlife-aman-glue-test.py
       # - pytest
-      #- name=$(git diff --name-only HEAD^)
-      #- name=$(echo $name)
-      #- echo $name
-      #- name1=$name
-      #- export name1
-  #post_build:
-    #commands:
+      - name=$(git diff --name-only HEAD^)
+      - name=$(echo $name)
+      - echo $name
+      - name1=$name
+      - export name1
+  post_build:
+    commands:
       # - python --version
       # - pip install aws_logging_handlers
-      #- python test.py
+      - python test.py
 artifacts:
   type: zip
   files:
