@@ -45,14 +45,14 @@ def test_filter_spark_data_frame_by_value():
     )
 
     # Equality assertion
-    if assert pd.testing.assert_frame_equal(expected_output,real_output,check_like=True,) is None:
+    if assert pd.testing.assert_frame_equal(expected_output,real_output,check_like=True) is None:
         return 1
     else:
         return 0
 
     # Close the Spark Context
-    my_mod.spark_context.stop()
-    return result
+    #my_mod.spark_context.stop()
+    #return result
 
 def get_sorted_data_frame(data_frame, columns_list):
     return data_frame.sort_values(columns_list).reset_index(drop=True)
