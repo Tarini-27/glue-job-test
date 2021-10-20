@@ -13,7 +13,7 @@ phases:
       - docker build -t glue-image . 
       - docker run -itd --name glue-container glue-image
       #- docker ps
-      - docker exec -i glue-container /bin/bash
+      #- docker exec -i glue-container /bin/bash
     #   - pwd
     #   - mkdir -p /opt/spark
     #   - cd /opt/spark
@@ -48,8 +48,8 @@ phases:
     #   - pip install pyGLUE
     #   - pip install pandas
     
-  build:
-    commands:
+  #build:
+    #commands:
       # - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       # - git fetch
       # - test=$(git diff --name-only $CODEBUILD_RESOLVED_SOURCE_VERSION^)
@@ -71,8 +71,8 @@ phases:
       #- echo $name
       #- name1=$name
       #- export name1
-  post_build:
-    commands:
+  #post_build:
+    #commands:
       # - python --version
       # - pip install aws_logging_handlers
       #- python test.py
