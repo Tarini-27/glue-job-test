@@ -9,9 +9,10 @@ phases:
       python: 3.7
       java: corretto8
     commands:
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
       - docker build -t glue-image . 
-      - docker run -itd --name glue-container glue-image
-      - docker exec -i glue-container /bin/bash
+      - docker run --interactive --privileged --tty glue-image bash
+      #- docker exec -i glue-container /bin/bash
     #   - pwd
     #   - mkdir -p /opt/spark
     #   - cd /opt/spark
