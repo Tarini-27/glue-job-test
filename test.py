@@ -65,11 +65,11 @@ def handler():
                 print("Testing")
                 #res = subprocess.check_output(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
                 res = subprocess.Popen(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"], stdout=subprocess.PIPE).communicate()[0]
-                print(res)
-                res = res.decode("utf-8")
+                print(res.returncode)
+                #res = res.decode("utf-8")
                 print(res)
                 #print(res.returncode)
-                if res==ee6fc12925a120954aa055da446691a5003dbb6ec477e4e7ff6b8b776de09c0d:
+                if res.returncode==0
                     print("Test Passed")
                 else:
                     print("Test Failed")
