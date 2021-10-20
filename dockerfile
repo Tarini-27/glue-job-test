@@ -3,6 +3,7 @@
 # CMD ["/home/spark-2.4.3-bin-spark-2.4.3-bin-hadoop2.8/bin/spark-submit", "/home/jupyter/glue-job/job-test.py"]
 
 FROM ubuntu:18.04
+WORKDIR /home
 RUN apt-get update && apt -y install python3-pip
 RUN pip3 install pytest
 RUn pip3 install pandas
@@ -20,7 +21,7 @@ RUN export PYSPARK_PYTHON=$(which python)
 RUN pip3 install pyspark
 RUN pip3 install py4j
 RUN git clone https://github.com/Tarini-27/glue-job-test
-WORKDIR "/home/glue-job-test"
+WORKDIR /glue-job-test
 RUN ../home/aws-glue-libs/bin/gluepytest test_spark.py
 #COPY . /home
 #RUN ls
