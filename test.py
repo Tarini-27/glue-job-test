@@ -63,7 +63,7 @@ def handler():
             # print(fun_name)
             try:
                 print("Testing")
-                res = subprocess.run(["docker run -d --name glue-container glue-image"])
+                res = subprocess.run(["docker" "run" "--name" "glue-container" "glue-image"])
                 print(res)
                 print(res.returncode)
                 if res.returncode==0:
