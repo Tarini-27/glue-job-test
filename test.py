@@ -63,10 +63,10 @@ def handler():
             # print(fun_name)
             try:
                 print("Testing")
-                res = subprocess.check_output(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
+                res = subprocess.run(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
                 #res = subprocess.Popen(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"], stdout=subprocess.PIPE).communicate()[0]
                 #print(res.returncode)
-                res = res.decode("utf-8")
+                #res = res.decode("utf-8")
                 print(res)
                 #print(res.returncode)
                 if res==1:
