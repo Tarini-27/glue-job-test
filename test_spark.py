@@ -46,7 +46,8 @@ def test_filter_spark_data_frame_by_value():
 
     # Equality assertion
     
-    pd.testing.assert_frame_equal(expected_output,real_output,check_like=True)
+    pd.testing.assert_frame_equal(expected_output,real_output,check_like=True,)
+    
     #3return real_output.equals(expected_output)
     # Close the Spark Context
     my_mod.spark_context.stop()
