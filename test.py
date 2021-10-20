@@ -66,7 +66,8 @@ def handler():
                 #res = subprocess.check_output(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
                 res = subprocess.Popen(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"], stdout=subprocess.PIPE).communicate()[0]
                 print(res)
-                res = res.decode("utf-8") 
+                res = res.decode("utf-8")
+                print(res)
                 #print(res.returncode)
                 if res==0:
                     print("Test Passed")
