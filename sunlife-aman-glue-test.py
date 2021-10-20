@@ -37,7 +37,6 @@ from pyspark.sql import SQLContext
 # txt.show(2000000, False)
 spark_context = SparkContext()
 sql_context = SQLContext(spark_context)
-
 from pyspark.sql.functions import col
 def filter_spark_data_frame(
     dataframe,
