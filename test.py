@@ -108,6 +108,5 @@ def handler():
                     # res1 = run_glue_job(base_func_name)
                     # print(res1)
 
-
             
 handler()
