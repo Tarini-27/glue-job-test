@@ -63,10 +63,10 @@ def handler():
             # print(fun_name)
             try:
                 print("Testing")
-                res = subprocess.check_output(["docker", "run", "-i", "--name", "glue-container", "glue-image", "test_spark.py"])
+                res = subprocess.check_output(["docker", "run", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
                 print(res)
-                print(res.returncode)
-                if res.returncode==0:
+                #print(res.returncode)
+                if res==0:
                     print("Test Passed")
                 else:
                     print("Test Failed")
