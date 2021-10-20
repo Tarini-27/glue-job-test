@@ -30,7 +30,7 @@ RUN git clone https://github.com/Tarini-27/glue-job-test
 WORKDIR glue-job-test
 RUN pwd
 RUN find / -name "aws-glue-libs"
-ENTRYPOINT ["/aws-glue-libs/bin/gluepytest"]
+ENTRYPOINT ["/home/aws-glue-libs/bin/gluepytest"]
 #COPY . /home
 #RUN ls
 #WORKDIR "home/"
