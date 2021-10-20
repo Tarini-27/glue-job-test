@@ -45,9 +45,13 @@ def test_filter_spark_data_frame_by_value():
     )
 
     # Equality assertion
-    if assert pd.testing.assert_frame_equal(expected_output,real_output,check_like=True) is None:
-        return 1
-    else:
+    try:
+        pd.testing.assert_frame_equal(
+        expected_output,
+        real_output,
+        check_like=True,
+        ) 
+    except AssertionError:
         return 0
 
     # Close the Spark Context
