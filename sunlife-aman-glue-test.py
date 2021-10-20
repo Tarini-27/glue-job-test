@@ -43,6 +43,6 @@ from pyspark.sql.functions import col
 def filter_spark_data_frame(
     dataframe,
     column_name='age',
-    value=20,
+    value=10,
 ):
     return dataframe.where(col(column_name) > value)
