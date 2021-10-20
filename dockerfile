@@ -20,8 +20,8 @@ RUN export PYSPARK_PYTHON=$(which python)
 RUN pip3 install pyspark
 RUN pip3 install py4j
 RUN git clone https://github.com/Tarini-27/glue-job-test
-WORKDIR "glue-job-test"
-RUN ../aws-glue-libs/bin/gluepytest test_spark.py
+WORKDIR "/home/glue-job-test"
+RUN ../home/aws-glue-libs/bin/gluepytest test_spark.py
 #COPY . /home
 #RUN ls
 #WORKDIR "home/"
