@@ -39,7 +39,6 @@ from pyspark.sql import SQLContext
 # SQLContext.setConf("spark.sql.hive.convertMetastoreOrc", "false")
 # txt = SQLContext.sql( "SELECT 1")
 # txt.show(2000000, False)
-
 spark_context = SparkContext()
 sql_context = SQLContext(spark_context)
 
