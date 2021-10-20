@@ -63,7 +63,7 @@ def handler():
             # print(fun_name)
             try:
                 print("Testing")
-                res = subprocess.check_output(["docker", "run", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
+                res = subprocess.check_output(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
                 print(res)
                 #print(res.returncode)
                 if res==0:
