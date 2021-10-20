@@ -2,7 +2,7 @@
 # COPY . /home/jupyter/glue-job
 # CMD ["/home/spark-2.4.3-bin-spark-2.4.3-bin-hadoop2.8/bin/spark-submit", "/home/jupyter/glue-job/job-test.py"]
 
-FROM python:3.10.0-buster
+FROM python:3.7-buster
 WORKDIR /home
 RUN apt update
 RUN pip install pytest
@@ -25,6 +25,7 @@ RUN export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 RUN export PYSPARK_PYTHON=$(which python)
 RUN pip install awsglue-local
 #RUN pip install py4j
+RUN pip install boto3
 RUN git clone https://github.com/Tarini-27/glue-job-test
 WORKDIR /glue-job-test
 RUN pwd
