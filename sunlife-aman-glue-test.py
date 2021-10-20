@@ -43,5 +43,4 @@ def filter_spark_data_frame(
     column_name='age',
     value=20,
 ):
-    
     return dataframe.where(col(column_name) > value)
