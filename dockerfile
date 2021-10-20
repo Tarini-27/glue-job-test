@@ -2,13 +2,17 @@
 # COPY . /home/jupyter/glue-job
 # CMD ["/home/spark-2.4.3-bin-spark-2.4.3-bin-hadoop2.8/bin/spark-submit", "/home/jupyter/glue-job/job-test.py"]
 
-FROM ubuntu:18.04
+FROM python:3.10.0-buster
 WORKDIR /home
-RUN apt-get update && apt -y install python-pip
+RUN apt update
 RUN pip install pytest
 RUN pip install pandas
 #RUN python --version
-RUN apt -y install openjdk-8-jdk-headless
+RUN apt install -y wget gnupg software-properties-common
+RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add 
+RUN add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+RUN apt update -y
+RUN apt install adoptopenjdk-8-hotspot -y
 RUN apt-get -y install git
 RUN git clone https://github.com/awslabs/aws-glue-libs.git
 RUN apt-get install wget
