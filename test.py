@@ -69,7 +69,7 @@ def handler():
                 #res = res.decode("utf-8")
                 print(res)
                 #print(res.returncode)
-                if res==1:
+                if res.returncode==0:
                     print("Test Passed")
                 else:
                     print("Test Failed")
