@@ -36,6 +36,7 @@ from pyspark.sql import SQLContext
 # txt = SQLContext.sql( "SELECT 1")
 # txt.show(2000000, False)
 
+
 spark_context = SparkContext()
 sql_context = SQLContext(spark_context)
 from pyspark.sql.functions import col
