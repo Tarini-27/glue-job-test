@@ -6,7 +6,8 @@ FROM ubuntu:18.04
 WORKDIR /home
 RUN apt-get update && apt -y install python3-pip
 RUN pip3 install pytest
-RUn pip3 install pandas
+RUN pip3 install pandas
+RUN python --version
 RUN apt -y install openjdk-8-jdk-headless
 RUN apt-get -y install git
 RUN git clone https://github.com/awslabs/aws-glue-libs.git
@@ -22,7 +23,8 @@ RUN pip3 install pyspark
 RUN pip3 install py4j
 RUN git clone https://github.com/Tarini-27/glue-job-test
 WORKDIR /glue-job-test
-RUN ../home/aws-glue-libs/bin/gluepytest test_spark.py
+RUN pwd
+RUN /home/aws-glue-libs/bin/gluepytest test_spark.py
 #COPY . /home
 #RUN ls
 #WORKDIR "home/"
