@@ -19,7 +19,7 @@ RUN export PATH=$PATH:$MAVEN/bin
 RUN export SPARK_HOME=/root/spark-3.1.1-amzn-0-bin-3.2.1-amzn-3
 RUN export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 RUN export PYSPARK_PYTHON=$(which python)
-RUN pip install pyspark
+#RUN pip install pyspark
 RUN pip install py4j
 RUN git clone https://github.com/Tarini-27/glue-job-test
 WORKDIR /glue-job-test
