@@ -20,7 +20,8 @@ RUN export PYSPARK_PYTHON=$(which python)
 RUN pip3 install pyspark
 RUN pip3 install py4j
 COPY . /home
-#WORKDIR "/home/glue-test"
-#RUN pwd
-#ENTRYPOINT ["python3", "test.py"]
+RUN ls
+WORKDIR "home/"
+RUN pwd
+ENTRYPOINT ["python3", "test.py"]
 
