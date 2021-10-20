@@ -10,7 +10,7 @@ phases:
       java: corretto8
     commands:
       - docker build -t glue-image . 
-      - docker run -itd --name glue-container glue-image
+      #- docker run -itd --name glue-container glue-image
       #- docker exec -i -t glue-container /bin/bash
     #   - pwd
     #   - mkdir -p /opt/spark
