@@ -29,7 +29,6 @@ from pyspark.sql import SQLContext
 #           connection_type = "s3",
 #           connection_options = {"path": "s3://sunlife-cybersec-test/output-dir/legislator_history"},
 #           format = "json")
-
 # # from pyspark import SparkContext
 # # from pyspark.sql import HiveContext
 # sc = SparkContext()
