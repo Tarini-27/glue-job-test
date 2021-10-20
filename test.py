@@ -2,7 +2,7 @@ import json, os
 import boto3, zipfile
 import subprocess
 s3_client = boto3.client('s3')
-glue_client = boto3.client('glue', region_name='us-east-1')
+glue_client = boto3.client('glue')
 
 def create_glue_job(fun_name):
     base_func_name = fun_name.split('.')
@@ -63,7 +63,7 @@ def handler():
             # print(fun_name)
             try:
                 print("Testing")
-                res = subprocess.run(["../aws-glue-libs/bin/gluepytest", "test_spark.py"])
+                res = subprocess.run(["docker run -d --name glue-container glue-image"])
                 print(res)
                 print(res.returncode)
                 if res.returncode==0:
