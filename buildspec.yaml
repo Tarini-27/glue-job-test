@@ -12,6 +12,7 @@ phases:
       - git clone https://github.com/Tarini-27/glue-job-test
       - cd glue-job-test
       - docker build -t glue-image . 
+      - docker images
       #- docker run -itd --name glue-container glue-image
       #- docker exec -i -t glue-container /bin/bash
     #   - pwd
