@@ -55,7 +55,7 @@ def handler():
     name1 = os.environ['name1']
     file_name = name1.split(' ')
     print(file_name)
-    allowed_files = ["sunlife-aman-glue-test.py","Sunlife_cyber_sec_test_1.py"]
+    allowed_files = ["sunlife-tarini.py","Sunlife_cyber_sec_test_1.py"]
     for name in file_name:
         if name in allowed_files:
             # fun_name = name.split('.')
