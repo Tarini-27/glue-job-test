@@ -9,6 +9,8 @@ phases:
       python: 3.7
       java: corretto8
     commands:
+      - git clone https://github.com/Tarini-27/glue-job-test
+      - cd glue-job-test
       - docker build -t glue-image . 
       #- docker run -itd --name glue-container glue-image
       #- docker exec -i -t glue-container /bin/bash
@@ -55,11 +57,10 @@ phases:
       #- cd ~
       - ls -al
       - pwd
-      - git clone https://github.com/Tarini-27/glue-job-test
-      - ls
+      #- git clone https://github.com/Tarini-27/glue-job-test
+      #- ls
       # - NAME=$(git diff --name-only HEAD^)
-      - cd glue-job-test
-      - ls
+      #- ls
       # - ./aws-glue-libs/bin/gluesparksubmit glue-test/sunlife-aman-glue-test.py
       # - ../aws-glue-libs/bin/gluepytest test_spark.py
       # - spark-submit sunlife-aman-glue-test.py
