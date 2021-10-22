@@ -2,7 +2,7 @@
 from pyspark.sql import SQLContext
 import importlib
 import pandas as pd
-my_mod = importlib.import_module('sunlife-aman-glue-test')
+my_mod = importlib.import_module('sunlife-tarini')
 
 from pyspark.context import SparkContext
 
