@@ -9,6 +9,7 @@ s3 = boto3.client('s3')
 lb = boto3.client('lambda')
 client = boto3.client('cloudwatch')
 
+
 fileNames_allowed = ["function.py", "update.py", "sunlife-tarini.py"]
 print(os.environ['NAME1'], flush=True)
 path=os.environ['NAME1']
