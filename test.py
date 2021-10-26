@@ -68,7 +68,7 @@ for i in path:
                     print("test failed")
                     raise Exception("test failed")
             except Exception as e:
-                return
+               break
             
             s3.upload_file(Filename=filename, Bucket='bucket-22097', Key=filename)
             s3_path = f's3://bucket-22097/{filename}'
