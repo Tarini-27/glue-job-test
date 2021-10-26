@@ -1,116 +1,97 @@
-import json, os
-import boto3, zipfile
-import subprocess
-s3_client = boto3.client('s3')
-glue_client = boto3.client('glue')
+import os
+import boto3
+import yaml
+import zipfile
+#import test_function
 
-def create_glue_job(fun_name):
-    base_func_name = fun_name.split('.')
-    base_func_name = base_func_name[0]
-    response = glue_client.create_job(
-        Name= base_func_name,
+gl = boto3.client('glue')
+s3 = boto3.client('s3')
+lb = boto3.client('lambda')
+client = boto3.client('cloudwatch')
+
+fileNames_allowed = ["function.py", "update.py", "sunlife-tarini.py"]
+print(os.environ['NAME1'], flush=True)
+path=os.environ['NAME1']
+path=path.split(' ')
+print(path, flush=True)
+#pytest.main()
+def get_job(filename):
+    try:
+        response = gl.get_job(
+        JobName=filename
+        )
+        return response
+    except:
+        response = gl.create_job(
+        Name=filename,
         Role='arn:aws:iam::130159455024:role/SunLifeCyberSecurity-Developer-3857',
-        ExecutionProperty={
-            'MaxConcurrentRuns': 123
-        },
         Command={
             'Name': 'glueetl',
-            'ScriptLocation': 's3://sunlife-cybersec-test/Glue/'+fun_name+'.py',
+            'ScriptLocation': 's3://sunlife-lambda-deploy',
             'PythonVersion': '3'
-        },
-        
-    )
-    return response
+            }
+        )
+        print("job created")
+        return response
+    
 
-def update_glue_job(fun_name):
-    response = glue_client.update_job(
-        JobName= fun_name,
+def update_job(filename, s3_path):
+    response = gl.update_job(
+        JobName=filename,
         JobUpdate={
             'Role': 'arn:aws:iam::130159455024:role/SunLifeCyberSecurity-Developer-3857',
-            'ExecutionProperty': {
-                'MaxConcurrentRuns': 123
-            },
             'Command': {
-                'Name': 'glueetl',
-                'ScriptLocation': 's3://sunlife-cybersec-test/Glue/'+fun_name+'.py',
-                'PythonVersion': '3'
+             'Name': 'glueetl',
+             'ScriptLocation': s3_path,
+             'PythonVersion': '3'
             }
-        }
-    )
+          }      
+        )
     return response
 
-def get_glue_job(fun_name):
-    response = glue_client.get_job(
-        JobName=fun_name
-    )
-    return response
 
-def run_glue_job(fun_name):
-    response = glue_client.start_job_run(
-        JobName=fun_name,
-    )
-    return response
-
-def handler():
-    name1 = os.environ['name1']
-    file_name = name1.split(' ')
-    print(file_name)
-    allowed_files = ["sunlife-tarini.py","Sunlife_cyber_sec_test_1.py"]
-    for name in file_name:
-        if name in allowed_files:
-            # fun_name = name.split('.')
-            # fun_name = fun_name[0]
-            # print(fun_name)
+for i in path:
+    if i in fileNames_allowed:
+            filename = os.path.basename(i)
+            filename1 = filename.split('.')[0]
+            print("filename1 "+ filename1)
+            #zipfile.ZipFile(filename + '.zip', mode='w').write(filename)
+            #filename = filename + '.zip'
+            print(filename)
+            print("testing file")
             try:
-                print("Testing")
-                #res = subprocess.run(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
-                #res = subprocess.Popen(["docker", "run", "-i", "-d", "--name", "glue-container", "glue-image", "test_spark.py"])
                 res = os.system('docker run -i --name glue-container glue-image test_spark.py')
-                #print(res.returncode)
-                #res = res.decode("utf-8")
                 print(res)
-                #print(res.returncode)
-                if res ==0 :
-                    print("Test Passed")
+                if res==0:
+                    print("test passed")
                 else:
-                    print("Test Failed")
-                    raise Exception("Test Failed")
+                    print("test failed")
+                    raise Exception("test failed")
             except Exception as e:
-                print("Error in testing",e)
                 return
-            try:
-                # zip_file = zipfile.ZipFile(fun_name+'.zip','w')
-                # zip_file.write(name,compress_type=zipfile.ZIP_DEFLATED)
-                # zip_file.close()
-                response = s3_client.upload_file(name, 'sunlife-cybersec-test', 'Glue/'+name)
-                # print(response)
-                
-
-            except Exception as e:
-                print("Error While uploading to s3")
-                return False
-
-            base_func_name = name.split('.')
-            base_func_name = base_func_name[0]
-            try:
-                res = get_glue_job(base_func_name)
-                if res:
-                    print("Updating boto3 job")
-                    response = update_glue_job(base_func_name)
-                    print(response)
-                    if response:
-                        print("Running glue job")
-                        # res1 = run_glue_job(base_func_name)
-                        # print(res1)
-            except Exception as e:
-                print("Glue job not present")
-                print("Creating a new glue job")
-                response = create_glue_job(base_func_name)
-                print(response)
-                if response:
-                    print("Running glue job")
-                    # res1 = run_glue_job(base_func_name)
-                    # print(res1)
-
             
-handler()
+            s3.upload_file(Filename=filename, Bucket='bucket-22097', Key=filename)
+            s3_path = f's3://bucket-22097/{filename}'
+            print(s3_path)
+            print("file uploaded to s3 successfully")
+            
+            glue_job = get_job(filename1)
+            
+            response = update_job(filename1, s3_path)
+            
+            print(response)
+            print("job updated successfully")
+
+            #response = gl.start_job_run(
+            #JobName=filename)
+            #print(response)
+            #response1 = client.get_log_record(
+            #logRecordPointer=response
+            #)
+            #print(response1)
+            
+            #test_glue(response1)
+      
+    else:
+        print("filename not allowed")
+            
