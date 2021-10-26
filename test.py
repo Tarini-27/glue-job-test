@@ -60,16 +60,13 @@ for i in path:
             #filename = filename + '.zip'
             print(filename)
             print("testing file")
-            try:
-                res = os.system('docker run -i --name glue-container glue-image test_spark.py')
-                print(res)
-                if res==0:
-                    print("test passed")
-                else:
-                    print("test failed")
-                    raise Exception("test failed")
-            except Exception as e:
-               break
+            res = os.system('docker run -i --name glue-container glue-image test_spark.py')
+            print(res)
+            if res==0:
+                print("test passed")
+            else:
+                print("test failed")
+                break
             
             s3.upload_file(Filename=filename, Bucket='bucket-22097', Key=filename)
             s3_path = f's3://bucket-22097/{filename}'
