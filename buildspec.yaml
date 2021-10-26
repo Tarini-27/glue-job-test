@@ -66,11 +66,9 @@ phases:
       # - ../aws-glue-libs/bin/gluepytest test_spark.py
       # - spark-submit sunlife-aman-glue-test.py
       # - pytest
-      - name=$(git diff --name-only HEAD^)
-      - name=$(echo $name)
-      - echo $name
-      - name1=$name
-      - export name1
+      - file_name=$(git diff --name-only HEAD^)
+      - echo $file_name
+      - export NAME1=$file_name
   post_build:
     commands:
       # - python --version
